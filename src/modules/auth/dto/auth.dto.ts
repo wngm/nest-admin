@@ -10,19 +10,20 @@ export class LoginDto {
 
   @ApiProperty({ description: '密码', example: 'a123456' })
   @IsString()
-  @Matches(/^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Za-z])\S*$/)
+  @Matches(/^\S*(?=\S{6})(?=\S*\d)(?=\S*[A-Z])\S*$/i)
   @MinLength(6)
   password: string
 
-  @ApiProperty({ description: '验证码标识' })
-  @IsString()
-  captchaId: string
+  // 暂时去掉验证码
+  // @ApiProperty({ description: '验证码标识' })
+  // @IsString()
+  // captchaId: string
 
-  @ApiProperty({ description: '用户输入的验证码' })
-  @IsString()
-  @MinLength(4)
-  @MaxLength(4)
-  verifyCode: string
+  // @ApiProperty({ description: '用户输入的验证码' })
+  // @IsString()
+  // @MinLength(4)
+  // @MaxLength(4)
+  // verifyCode: string
 }
 
 export class RegisterDto {
@@ -32,7 +33,7 @@ export class RegisterDto {
 
   @ApiProperty({ description: '密码' })
   @IsString()
-  @Matches(/^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Za-z])\S*$/)
+  @Matches(/^\S*(?=\S{6})(?=\S*\d)(?=\S*[A-Z])\S*$/i)
   @MinLength(6)
   @MaxLength(16)
   password: string

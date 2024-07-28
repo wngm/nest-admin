@@ -50,6 +50,24 @@ export class UserEntity extends CommonEntity {
   @Column({ type: 'tinyint', nullable: true, default: 1 })
   status: number
 
+  @Column({ type: 'bigint', default: 0 })
+  conis: number
+
+  @Column({ type: 'float', default: 0 })
+  usdt: number
+
+  @Column({ type: 'float', default: 0 })
+  btc: number
+
+  @Column({ type: 'float', default: 0 })
+  eth: number
+
+  @Column({ type: 'float', default: 0 })
+  bnb: number
+
+  @Column({ type: 'float', default: 0 })
+  usdc: number
+
   @ManyToMany(() => RoleEntity, role => role.users)
   @JoinTable({
     name: 'sys_user_roles',
