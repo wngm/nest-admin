@@ -31,7 +31,7 @@ export class UserController {
   constructor(
     private userService: UserService,
     private menuService: MenuService,
-  ) {}
+  ) { }
 
   @Get()
   @ApiOperation({ summary: '获取用户列表' })

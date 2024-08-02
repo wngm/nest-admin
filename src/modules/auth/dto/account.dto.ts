@@ -23,7 +23,7 @@ export class AccountUpdateDto {
   @ApiProperty({ description: '用户QQ' })
   @IsOptional()
   @IsString()
-  @Matches(/^[0-9]+$/)
+  @Matches(/^\d+$/)
   @MinLength(5)
   @MaxLength(11)
   qq: string
@@ -51,7 +51,7 @@ export class ResetPasswordDto {
 
   @ApiProperty({ description: '密码', example: 'a123456' })
   @IsString()
-  @Matches(/^\S*(?=\S{6,})(?=\S*\d)(?=\S*[A-Za-z])\S*$/)
+  @Matches(/^\S*(?=\S{6})(?=\S*\d)(?=\S*[A-Z])\S*$/i)
   @MinLength(6)
   password: string
 }
@@ -61,4 +61,18 @@ export class MenuMeta extends PartialType(OmitType(MenuEntity, ['parentId', 'cre
 }
 export class AccountMenus extends PickType(MenuEntity, ['id', 'path', 'name', 'component'] as const) {
   meta: MenuMeta
+}
+
+export class RechargeDto {
+  @ApiProperty({ description: '充值用户', example: 1 })
+  @IsString()
+  userId: number
+
+  @ApiProperty({ description: '币种', example: 'usdt' })
+  @IsString()
+  type: string
+
+  @ApiProperty({ description: '充值金额', example: 100 })
+  @IsString()
+  value: number
 }

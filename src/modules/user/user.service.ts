@@ -13,7 +13,7 @@ import { genAuthPVKey, genAuthPermKey, genAuthTokenKey, genOnlineUserKey } from 
 
 import { paginate } from '~/helper/paginate'
 import { Pagination } from '~/helper/paginate/pagination'
-import { AccountUpdateDto } from '~/modules/auth/dto/account.dto'
+import { AccountUpdateDto, RechargeDto } from '~/modules/auth/dto/account.dto'
 import { RegisterDto } from '~/modules/auth/dto/auth.dto'
 import { QQService } from '~/shared/helper/qq.service'
 
@@ -42,7 +42,7 @@ export class UserService {
     @InjectEntityManager() private entityManager: EntityManager,
     private readonly paramConfigService: ParamConfigService,
     private readonly qqService: QQService,
-  ) {}
+  ) { }
 
   async findUserById(id: number): Promise<UserEntity | undefined> {
     return this.userRepository
@@ -377,5 +377,13 @@ export class UserService {
 
       return user
     })
+  }
+
+  /**
+   * 充值
+   */
+  async recharge(dto: RechargeDto): Promise<void> {
+    const user = await this.userRepository.findOneBy({ id: dto.userId })
+
   }
 }

@@ -13,7 +13,7 @@ import { PasswordUpdateDto } from '~/modules/user/dto/password.dto'
 import { AccountInfo } from '../../user/user.model'
 import { UserService } from '../../user/user.service'
 import { AuthService } from '../auth.service'
-import { AccountMenus, AccountUpdateDto } from '../dto/account.dto'
+import { AccountMenus, AccountUpdateDto, RechargeDto } from '../dto/account.dto'
 import { JwtAuthGuard } from '../guards/jwt-auth.guard'
 
 @ApiTags('Account - 账户模块')
@@ -25,7 +25,7 @@ export class AccountController {
   constructor(
     private userService: UserService,
     private authService: AuthService,
-  ) {}
+  ) { }
 
   @Get('profile')
   @ApiOperation({ summary: '获取账户资料' })
@@ -63,7 +63,7 @@ export class AccountController {
   @AllowAnon()
   async update(
     @AuthUser() user: IAuthUser, @Body()
-dto: AccountUpdateDto,
+    dto: AccountUpdateDto,
   ): Promise<void> {
     await this.userService.updateAccountInfo(user.uid, dto)
   }
@@ -73,8 +73,15 @@ dto: AccountUpdateDto,
   @AllowAnon()
   async password(
     @AuthUser() user: IAuthUser, @Body()
-dto: PasswordUpdateDto,
+    dto: PasswordUpdateDto,
   ): Promise<void> {
     await this.userService.updatePassword(user.uid, dto)
+  }
+
+  @Post('recharge')
+  @ApiOperation({ summary: '充值操作' })
+  async recharge(@Body() dto: RechargeDto): Promise<void> {
+    
+
   }
 }
