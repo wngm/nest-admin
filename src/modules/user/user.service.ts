@@ -382,8 +382,13 @@ export class UserService {
   /**
    * 充值
    */
-  async recharge(dto: RechargeDto): Promise<void> {
+  async recharge(dto: RechargeDto): Promise<UserEntity> {
     const user = await this.userRepository.findOneBy({ id: dto.userId })
+    const $user = await this.userRepository.update({ id: dto.userId }, {
+      [dto.type]: user[dto.type] + dto.value,
+    })
+    console.log($user, 99)
 
+    return this.userRepository.findOneBy({ id: dto.userId })
   }
 }

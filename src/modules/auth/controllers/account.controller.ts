@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Put, Req, UseGuards } from '@nestjs/common'
 import { ApiExtraModels, ApiOperation, ApiTags } from '@nestjs/swagger'
 import { FastifyRequest } from 'fastify'
+import Web3 from 'web3'
 
 import { ApiResult } from '~/common/decorators/api-result.decorator'
 
@@ -80,8 +81,9 @@ export class AccountController {
 
   @Post('recharge')
   @ApiOperation({ summary: '充值操作' })
-  async recharge(@Body() dto: RechargeDto): Promise<void> {
-    
-
+  async recharge(@Body() dto: RechargeDto): Promise<any> {
+    console.log(222, dto, Web3)
+    const data = await this.userService.recharge(dto)
+    return data
   }
 }

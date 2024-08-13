@@ -1,6 +1,7 @@
 import { ApiProperty, OmitType, PartialType, PickType } from '@nestjs/swagger'
 import {
   IsEmail,
+  IsNumber,
   IsOptional,
   IsString,
   Matches,
@@ -65,7 +66,7 @@ export class AccountMenus extends PickType(MenuEntity, ['id', 'path', 'name', 'c
 
 export class RechargeDto {
   @ApiProperty({ description: '充值用户', example: 1 })
-  @IsString()
+  @IsNumber()
   userId: number
 
   @ApiProperty({ description: '币种', example: 'usdt' })
@@ -73,6 +74,6 @@ export class RechargeDto {
   type: string
 
   @ApiProperty({ description: '充值金额', example: 100 })
-  @IsString()
+  @IsNumber()
   value: number
 }

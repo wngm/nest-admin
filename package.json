@@ -120,6 +120,7 @@
     "@types/qs": "^6.9.15",
     "@types/supertest": "^6.0.2",
     "@types/ua-parser-js": "^0.7.39",
+    "bignumber.js": "^9.1.2",
     "cross-env": "^7.0.3",
     "eslint": "^9.4.0",
     "jest": "^29.7.0",
@@ -130,7 +131,8 @@
     "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "web3": "^4.11.1"
   },
   "pnpm": {
     "peerDependencyRules": {
